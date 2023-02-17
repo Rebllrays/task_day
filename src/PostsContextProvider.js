@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { createContext } from "react";
-export const postsContext=createContext()
+import axios from "axios";
+export const postsContext = createContext();
 
-const PostsContextProvider =({children})=>{
-    
-    return(
+const PostsContextProvider = ({ children }) => {
+  const [posts, setPosts] = useState([]);
+
+  const API = "http://localhost:8000/posts";
+
+  async function createPost(newPost) {
+    await axios.post(API, newPost);
+  }
+  let values = {
+    createPost,
+    posts,
+  };
+  return (
     <>
-    <postsContext.Provider>
-        {children}
-    </postsContext.Provider>
-    </>)
-}
+      <postsContext.Provider value={values}>{children}</postsContext.Provider>
+    </>
+  );
+};
 export default PostsContextProvider;
