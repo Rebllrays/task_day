@@ -1,7 +1,14 @@
-import React from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { postsContext } from "../../PostsContextProvider";
 const EditPost = () => {
-  return <div>EditPost</div>;
+  const {}
+  return (
+
+    <>
+    </>
+  );
+
 };
 
 export default EditPost;

@@ -10,14 +10,21 @@ const PostsContextProvider = ({ children }) => {
 
   async function createPost(newPost) {
     await axios.post(API, newPost);
+    getPost()
   }
+  async function getPost(){
+    const res = await axios(API)
+    setPosts(res.data)
+  }
+
   let values = {
     createPost,
     posts,
+    getPost
   };
   return (
     <>
-      <postsContext.Provider value={values}>{children}</postsContext.Provider>
+      <postsContext.Provider value={values}>{children} </postsContext.Provider>
     </>
   );
 };
